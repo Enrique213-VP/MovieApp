@@ -15,8 +15,9 @@ class TopRatedConcatAdapter (private val movieAdapter: MovieAdapter): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: BaseConcatHolder<*>, position: Int) {
-        when(holder){
+        when (holder) {
             is ConcatViewHolder -> holder.bind(movieAdapter)
+            else -> throw IllegalArgumentException("No viewholder to show this data, did you forgot to add it to the onBindViewHolder?")
         }
     }
 
@@ -26,6 +27,5 @@ class TopRatedConcatAdapter (private val movieAdapter: MovieAdapter): RecyclerVi
         override fun bind(adapter: MovieAdapter) {
             binding.rvTopRated.adapter = adapter
         }
-
     }
 }

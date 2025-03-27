@@ -12,15 +12,7 @@ class MovieViewModel(private val repo: MovieRepository) : ViewModel() {
     fun fetchMainScreenMovies() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            emit(
-                Resource.Success(
-                    Triple(
-                        repo.getUpComingMovies(),
-                        repo.getTopRatedMovies(),
-                        repo.getPopularMovies()
-                    )
-                )
-            )
+            emit(Resource.Success(Triple(repo.getUpcomingMovies(),repo.getTopRatedMovies(),repo.getPopularMovies())))
         } catch (e: Exception) {
             emit(Resource.Failure(e))
         }
